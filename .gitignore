@@ -20,10 +20,10 @@ Thumbs.db
 
 # Django #
 ##########
-*.log
 *.pot
 *.pyc
 
 # Locales #
 ###########
 local_settings.py
+.idea
