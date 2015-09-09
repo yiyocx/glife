@@ -1,0 +1,29 @@
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+*~
+
+# Django #
+##########
+*.log
+*.pot
+*.pyc
+
+# Locales #
+###########
+local_settings.py
