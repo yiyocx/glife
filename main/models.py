@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
-    slug = models.SlugField(max_length=30, unique=True)
+    slug = models.SlugField('Etiqueta', max_length=30, unique=True)
 
     def __str__(self):
         return self.slug

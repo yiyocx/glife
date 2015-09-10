@@ -1,11 +1,8 @@
 # coding=utf-8
-from rest_framework import authentication, permissions, generics
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import authentication, permissions, generics, viewsets
 
-from main.serializers import UserSerializer
-
-from models import User
+from main.serializers import UserSerializer, TagSerializer
+from models import User, Tag
 
 
 class ListUsers(generics.ListCreateAPIView):
@@ -17,5 +14,11 @@ class ListUsers(generics.ListCreateAPIView):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    authentication_classes = (authentication.TokenAuthentication, )
-    permission_classes = (permissions.IsAdminUser, )
+    authentication_classes = (authentication.TokenAuthentication,)
+    permission_classes = (permissions.IsAdminUser,)
+
+
+class TagViewSet(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+
