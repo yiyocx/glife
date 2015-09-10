@@ -22,7 +22,7 @@ Activate the virtualenv
 
 ### Configure PostgreSQL
 
-	sudo su -s postgresa
+	sudo su -s postgres
 	createdb glife_db
 
 Now we have to configure the database settings in local_settings.py
