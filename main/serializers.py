@@ -1,11 +1,13 @@
 from rest_framework import serializers
-from models import Tag, User
+from taggit.models import Tag
+
+from models import User
 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tag
-        fields = ('url', 'slug')
+        fields = ('url', 'name')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

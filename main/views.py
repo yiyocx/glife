@@ -1,8 +1,9 @@
 # coding=utf-8
 from rest_framework import authentication, permissions, generics, viewsets
+from taggit.models import Tag
 
 from main.serializers import UserSerializer, TagSerializer
-from models import User, Tag
+from models import User
 
 
 class ListUsers(generics.ListCreateAPIView):

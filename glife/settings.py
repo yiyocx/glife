@@ -32,6 +32,7 @@ INSTALLED_APPS = (
 
     'rest_framework',
     'main',
+    'taggit',
 )
 
 MIDDLEWARE_CLASSES = (

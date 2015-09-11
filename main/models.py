@@ -1,13 +1,7 @@
 # coding=utf-8
 from django.db import models
 from django.contrib.auth.models import User
-
-
-class Tag(models.Model):
-    slug = models.SlugField('Etiqueta', max_length=30, unique=True)
-
-    def __str__(self):
-        return self.slug
+from taggit.managers import TaggableManager
 
 
 def calculate_path(self, filename):
@@ -23,7 +17,7 @@ class Document(models.Model):
     title = models.CharField(max_length=140)
     description = models.TextField(blank=True)
     owner = models.ForeignKey(User, related_name='documents')
-    tags = models.ManyToManyField(Tag)
+    tags = TaggableManager()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
