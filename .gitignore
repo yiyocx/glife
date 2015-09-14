@@ -28,3 +28,4 @@ Thumbs.db
 ###########
 local_settings.py
 .idea
+/uploads
