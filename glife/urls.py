@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^', include('main.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^docs/', include('rest_framework_swagger.urls')),
 ]
 
 

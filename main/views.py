@@ -9,11 +9,13 @@ from models import User, Document, Tag
 
 
 class TagViewSet(viewsets.ModelViewSet):
+    """Recurso Tags"""
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 
 
 class DocumentViewSet(viewsets.ModelViewSet):
+    """Recurso Document"""
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     filter_backends = (filters.SearchFilter, filters.DjangoFilterBackend, )
@@ -35,5 +37,6 @@ class ListUsers(generics.CreateAPIView):
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """Recurso User"""
     queryset = User.objects.all()
     serializer_class = UserSerializer
