@@ -21,10 +21,11 @@ from main import views
 
 router = DefaultRouter()
 router.register(r'tags', views.TagViewSet)
+router.register(r'documents', views.DocumentViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^users/$', views.ListUsers.as_view()),
+    url(r'^', include('main.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

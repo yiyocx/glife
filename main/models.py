@@ -1,7 +1,16 @@
 # coding=utf-8
 from django.db import models
 from django.contrib.auth.models import User
-from taggit.managers import TaggableManager
+
+
+class Tag(models.Model):
+    """
+    Tag for data. Every tag has unique text
+    """
+    name = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 def calculate_path(self, filename):
@@ -17,7 +26,7 @@ class Document(models.Model):
     title = models.CharField(max_length=140)
     description = models.TextField(blank=True)
     owner = models.ForeignKey(User, related_name='documents')
-    tags = TaggableManager()
+    tags = models.ManyToManyField(Tag, related_name='documents')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
