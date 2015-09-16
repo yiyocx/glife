@@ -12,6 +12,7 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class DocumentSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
     tags = serializers.SlugRelatedField(many=True, queryset=Tag.objects.all(), slug_field='name')
 
     class Meta:
@@ -23,4 +24,5 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined', 'documents')
+        fields = ('url', 'username', 'first_name', 'last_name', 'email',
+                  'is_staff', 'is_active', 'date_joined', 'documents')

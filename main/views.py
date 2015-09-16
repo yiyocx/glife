@@ -21,6 +21,10 @@ class DocumentViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter, filters.DjangoFilterBackend, )
     filter_class = DocumentFilter
     search_fields = ('title', 'description', 'tags__name')
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class ListUsers(generics.CreateAPIView):
@@ -32,8 +36,6 @@ class ListUsers(generics.CreateAPIView):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAdminUser,)
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
