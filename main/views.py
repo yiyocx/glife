@@ -1,9 +1,9 @@
 # coding=utf-8
-from rest_framework import authentication, permissions, generics, viewsets
+from rest_framework import permissions, generics, viewsets
 from rest_framework import filters
 
 from main.filters import DocumentFilter
-
+from main.permissions import IsOwnerOrReadOnly
 from main.serializers import UserSerializer, TagSerializer, DocumentSerializer
 from models import User, Document, Tag
 
@@ -21,7 +21,7 @@ class DocumentViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter, filters.DjangoFilterBackend, )
     filter_class = DocumentFilter
     search_fields = ('title', 'description', 'tags__name')
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
