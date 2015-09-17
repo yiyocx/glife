@@ -21,8 +21,11 @@ class DocumentSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     documents = serializers.HyperlinkedRelatedField(many=True, view_name='document-detail', read_only=True)
+    password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+    confirm_password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
         model = User
-        fields = ('url', 'username', 'first_name', 'last_name', 'email',
-                  'is_staff', 'is_active', 'date_joined', 'documents')
+        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'confirm_password', 'is_active', 'documents')
+        read_only_fields = ('is_active', )
+        #exclude = ('groups', 'user_permissions', )
