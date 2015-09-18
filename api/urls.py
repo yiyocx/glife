@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from rest_framework.authtoken import views as token_views
 
-from main import views
+from api import views
 
 urlpatterns = [
     url(r'^users/$', views.ListUsers.as_view()),

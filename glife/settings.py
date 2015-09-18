@@ -20,6 +20,9 @@ except ImportError:
 
 ALLOWED_HOSTS = []
 
+# Custom Authentication
+AUTH_USER_MODEL = 'custom_auth.User'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -33,7 +36,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
-    'main',
+    'custom_auth',
+    'api',
 )
 
 MIDDLEWARE_CLASSES = (

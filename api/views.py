@@ -2,9 +2,9 @@
 from rest_framework import permissions, generics, viewsets
 from rest_framework import filters
 
-from main.filters import DocumentFilter
-from main.permissions import IsOwnerOrReadOnly
-from main.serializers import UserSerializer, TagSerializer, DocumentSerializer
+from api.filters import DocumentFilter
+from api.permissions import IsOwnerOrReadOnly
+from api.serializers import UserSerializer, TagSerializer, DocumentSerializer
 from models import User, Document, Tag
 
 

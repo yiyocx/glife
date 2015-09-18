@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from main.models import Document, Tag
+from api.models import Document, Tag
 from models import User
 
 

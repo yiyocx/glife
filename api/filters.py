@@ -1,6 +1,6 @@
 import django_filters
 
-from main.models import Tag, Document
+from api.models import Tag, Document
 
 
 class DocumentFilter(django_filters.FilterSet):

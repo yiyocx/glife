@@ -1,7 +1,6 @@
 # coding=utf-8
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
@@ -38,7 +37,7 @@ class Document(models.Model):
     file = models.FileField(upload_to=calculate_path)
     title = models.CharField(max_length=140)
     description = models.TextField(blank=True)
-    owner = models.ForeignKey(User, related_name='documents')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='documents')
     tags = models.ManyToManyField(Tag, related_name='documents')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
