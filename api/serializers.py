@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from api.models import Document, Tag
-from models import User
+from custom_auth.models import User
 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
@@ -26,6 +26,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'confirm_password', 'is_active', 'documents')
+        fields = ('url', 'email', 'first_name', 'last_name', 'phone_number', 'date_of_birth',
+                  'password', 'confirm_password', 'is_active', 'documents')
         read_only_fields = ('is_active', )
         #exclude = ('groups', 'user_permissions', )

@@ -5,7 +5,8 @@ from rest_framework import filters
 from api.filters import DocumentFilter
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers import UserSerializer, TagSerializer, DocumentSerializer
-from models import User, Document, Tag
+from custom_auth.models import User
+from models import Document, Tag
 
 
 class TagViewSet(viewsets.ModelViewSet):
