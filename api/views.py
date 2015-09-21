@@ -38,14 +38,6 @@ class ListUsers(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    def perform_create(self, serializer):
-        data = serializer.validated_data
-        # del data['confirm_password']
-
-        print('la data es %s' % data)
-        serializer.save(**data)
-        super(ListUsers, self).perform_create(serializer)
-
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     """Recurso User"""
