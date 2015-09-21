@@ -16,3 +16,20 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Permisos de escritura solo son permitidos al propietario del Documento
         return obj.owner == request.user
+
+
+class UserPermission(permissions.BasePermission):
+    def has_permission(self, request, view):
+        """
+        Permite que cualquier persona pueda registrarse creando una cuenta
+        pero restringe la visualización de usuarios existentes a usuarios autenticados
+        """
+        return request.method == 'POST' or request.user and request.user.is_authenticated()
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return obj == request.user
+
+

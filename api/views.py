@@ -1,11 +1,12 @@
 # coding=utf-8
-from rest_framework import permissions, generics, viewsets
+from django.contrib.auth import get_user_model
+
+from rest_framework import permissions, viewsets, generics, mixins
 from rest_framework import filters
 
 from api.filters import DocumentFilter
-from api.permissions import IsOwnerOrReadOnly
+from api.permissions import IsOwnerOrReadOnly, UserPermission
 from api.serializers import UserSerializer, TagSerializer, DocumentSerializer
-from custom_auth.models import User
 from models import Document, Tag
 
 
@@ -28,18 +29,14 @@ class DocumentViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
-class ListUsers(generics.CreateAPIView):
-    """
-    Lista todos los usuarios del sistema
-
-    * Requiere autenticación por Token
-    * Solo los usuarios administrativos pueden acceder a esta vista
-    """
-    queryset = User.objects.all()
+class UserListCreateView(generics.ListCreateAPIView):
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+    permission_classes = (UserPermission, )
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    """Recurso User"""
-    queryset = User.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+    permission_classes = (UserPermission, )
+
