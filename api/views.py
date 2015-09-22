@@ -1,6 +1,6 @@
 # coding=utf-8
-from django.contrib.auth import get_user_model
-from rest_framework import permissions, viewsets, generics, status
+from django.contrib.auth import get_user_model, logout
+from rest_framework import permissions, viewsets, generics, status, mixins, authentication
 from rest_framework import filters
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -63,3 +63,13 @@ class RegisterView(generics.CreateAPIView):
         if serializer.is_valid():
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(generics.GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.TokenAuthentication,)
+
+    def post(self, request):
+        request.user.auth_token.delete()
+        logout(request)
+        return Response({"success": "Successfully logged out"}, status=status.HTTP_200_OK)
