@@ -8,14 +8,16 @@ class UserManager(BaseUserManager):
     """
     Manager personalizado para el modelo de Usuario
     """
-    def create_user(self, email, first_name, last_name, password=None):
+    def create_user(self, email, first_name, last_name, password=None, phone_number=None, date_of_birth=None):
         if not email:
             raise ValueError('Users must have an email address')
 
         user = self.model(
             email=self.normalize_email(email),
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
+            phone_number=phone_number,
+            date_of_birth=date_of_birth
         )
         user.set_password(password)
         user.save(using=self._db)

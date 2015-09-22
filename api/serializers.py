@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
 from api.models import Document, Tag
 
@@ -27,7 +28,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = get_user_model()
         fields = ('url', 'email', 'first_name', 'last_name', 'phone_number', 'date_of_birth',
                   'password', 'is_active', 'documents')
-        read_only_fields = ('is_active', )
+        read_only_fields = ('is_active',)
 
     def create(self, validated_data):
         user = get_user_model().objects.create_user(validated_data['email'], validated_data['first_name'],
@@ -37,3 +38,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         return user
 
 
+class TokenSerializer(serializers.ModelSerializer):
+    """
+    Serializer para el modelo Token del rest_framework.authtoken
+    """
+
+    class Meta:
+        model = Token
+        fields = ('key',)
