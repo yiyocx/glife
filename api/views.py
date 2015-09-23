@@ -40,36 +40,3 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
     permission_classes = (UserPermission,)
-
-
-class RegisterView(generics.CreateAPIView):
-    """
-    Crea un nuevo usuario en caso de que el usuario no exista actualmente.
-    Retorna un Token en caso de registro exitoso.
-
-    Acepta los siguientes parametros obligatorios POST: email, first_name, last_name, password.
-    Opcionalmente puede recibir: phone_number, date_of_birth
-    """
-
-    serializer_class = TokenSerializer
-    permission_classes = (permissions.AllowAny,)
-    allowed_methods = ('POST', 'OPTIONS', )
-
-    def post(self, request, *args, **kwargs):
-        user_created = get_user_model().objects.create_user(**request.data)
-        token, created = Token.objects.get_or_create(user=user_created)
-
-        serializer = self.get_serializer(instance=token, data={'key': token.key})
-        if serializer.is_valid():
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class LogoutView(generics.GenericAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (authentication.TokenAuthentication,)
-
-    def post(self, request):
-        request.user.auth_token.delete()
-        logout(request)
-        return Response({"success": "Successfully logged out"}, status=status.HTTP_200_OK)
