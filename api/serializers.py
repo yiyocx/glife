@@ -22,20 +22,13 @@ class DocumentSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     documents = serializers.HyperlinkedRelatedField(many=True, view_name='document-detail', read_only=True)
-    password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+    # password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
         model = get_user_model()
         fields = ('url', 'email', 'first_name', 'last_name', 'phone_number', 'date_of_birth',
-                  'password', 'is_active', 'documents')
+                  'is_active', 'documents')
         read_only_fields = ('is_active',)
-
-    def create(self, validated_data):
-        user = get_user_model().objects.create_user(validated_data['email'], validated_data['first_name'],
-                                                    validated_data['last_name'], validated_data['password'])
-        user.phone_number = validated_data['phone_number']
-        user.date_of_birth = validated_data['date_of_birth']
-        return user
 
 
 class TokenSerializer(serializers.ModelSerializer):

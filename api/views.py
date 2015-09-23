@@ -1,15 +1,14 @@
 # coding=utf-8
-from django.contrib.auth import get_user_model, logout
-from rest_framework import permissions, viewsets, generics, status, mixins, authentication
+from django.contrib.auth import get_user_model
+from rest_framework import permissions, viewsets, generics
 from rest_framework import filters
-from rest_framework.authtoken.models import Token
-from rest_framework.response import Response
 
 from api.filters import DocumentFilter
 from api.permissions import IsOwnerOrReadOnly, UserPermission
-from api.serializers import UserSerializer, TagSerializer, DocumentSerializer, TokenSerializer
+from api.serializers import UserSerializer, TagSerializer, DocumentSerializer
 from models import Document, Tag
 
+User = get_user_model()
 
 class TagViewSet(viewsets.ModelViewSet):
     """Recurso Tags"""
@@ -30,13 +29,20 @@ class DocumentViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
-class UserListCreateView(generics.ListCreateAPIView):
-    queryset = get_user_model().objects.all()
+class UserListView(generics.ListAPIView):
+    """
+    Permite que los usuarios autenticados puedan ver el listado de usuarios existentes
+    """
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (UserPermission,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = get_user_model().objects.all()
+    """
+    Detalle de un usuario
+    Un usuario solo puede editar y eliminar su propia información.
+    """
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (UserPermission,)
+    permission_classes = (permissions.IsAuthenticated, UserPermission,)
