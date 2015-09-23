@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=30)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(max_length=15, validators=[phone_regex], blank=True)
+    phone_number = models.CharField(max_length=15, validators=[phone_regex], blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     is_admin = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
