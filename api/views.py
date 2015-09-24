@@ -4,16 +4,36 @@ from rest_framework import permissions, viewsets, generics
 from rest_framework import filters
 
 from api.filters import DocumentFilter
-from api.permissions import IsOwnerOrReadOnly, UserPermission
+from api.permissions import IsOwnerOrReadOnly, UserPermission, IsAdminOrReadOnly
 from api.serializers import UserSerializer, TagSerializer, DocumentSerializer
 from models import Document, Tag
 
 User = get_user_model()
 
-class TagViewSet(viewsets.ModelViewSet):
-    """Recurso Tags"""
+
+class TagListView(generics.ListCreateAPIView):
+    """
+    Permite crear nuevos tags y listar los tags existentes.
+
+    El usuario debe estar autenticado
+    """
+
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Detalle de un Tag que permite visualizar, actualizar y eliminar información.
+
+    * Los usuarios autenticados solo pueden visualizar información de un Tag
+    * Los usuarios administradores pueden actualizar y eliminar información de un Tag
+    """
+
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+    permission_classes = (permissions.IsAuthenticated, IsAdminOrReadOnly,)
 
 
 class DocumentViewSet(viewsets.ModelViewSet):
@@ -31,8 +51,11 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
 class UserListView(generics.ListAPIView):
     """
-    Permite que los usuarios autenticados puedan ver el listado de usuarios existentes
+    Permite listar los usuarios existentes.
+
+    El usuario debe estar autenticado
     """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticated,)
@@ -40,9 +63,13 @@ class UserListView(generics.ListAPIView):
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
-    Detalle de un usuario
-    Un usuario solo puede editar y eliminar su propia información.
+    Detalle de un Usuario que permite visualizar, actualizar y eliminar información.
+
+    * Requiere autenticación
+    * Un usuario pueden visualizar la información de cualquier Usuario
+    * Un usuario solo puede editar y eliminar su propia información.
     """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticated, UserPermission,)
