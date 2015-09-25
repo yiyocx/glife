@@ -14,6 +14,10 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
+        # Si el usuario es Administrador entonces puede actualizar y eliminar cualquier documento
+        if request.method in ('PUT', 'PATCH', 'DELETE') and request.user and request.user.is_staff:
+            return True
+
         # Permisos de escritura solo son permitidos al propietario del Documento
         return obj.owner == request.user
 

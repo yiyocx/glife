@@ -37,13 +37,18 @@ class TagDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class DocumentViewSet(viewsets.ModelViewSet):
-    """Recurso Document"""
+    """
+    Permite crear, listar, obtener, actualizar y eliminar documentos
+
+    * Los usuarios autenticados pueden crear documentos, listarlos y ver el detalle de cualquiera
+    * Un documento solo puede ser actualizado y eliminado por su propietario o por un Administrador
+    """
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     filter_backends = (filters.SearchFilter, filters.DjangoFilterBackend,)
     filter_class = DocumentFilter
     search_fields = ('title', 'description', 'tags__name')
-    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

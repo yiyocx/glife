@@ -12,14 +12,6 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         model = Tag
 
 
-class DocumentSerializer(serializers.HyperlinkedModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-    tags = serializers.SlugRelatedField(many=True, queryset=Tag.objects.all(), slug_field='name')
-
-    class Meta:
-        model = Document
-
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     documents = serializers.HyperlinkedRelatedField(many=True, view_name='document-detail', read_only=True)
     # password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
@@ -29,6 +21,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'email', 'first_name', 'last_name', 'phone_number', 'date_of_birth',
                   'is_active', 'documents')
         read_only_fields = ('is_active',)
+
+
+class DocumentSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.HyperlinkedRelatedField(read_only=True, view_name='user-detail')
+    tags = serializers.SlugRelatedField(many=True, queryset=Tag.objects.all(), slug_field='name')
+
+    class Meta:
+        model = Document
+        fields = ('url', 'file', 'title', 'description', 'owner', 'tags', 'created_at', 'updated_at')
 
 
 class TokenSerializer(serializers.ModelSerializer):
