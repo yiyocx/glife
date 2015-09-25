@@ -44,3 +44,17 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class DocumentVote(models.Model):
+    document = models.ForeignKey(Document, related_name='votes')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL)
+    is_upvote = models.BooleanField()
+
+    def __str__(self):
+        if self.is_upvote:
+            value = '+1'
+        else:
+            value = '-1'
+        return 'Document: %s, Type: %s' % (self.document, value)
+
