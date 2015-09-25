@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetailView.as_view(), name='user-detail'),
     url(r'^tags/$', views.TagListView.as_view()),
     url(r'^tags/(?P<pk>[0-9]+)/$', views.TagDetailView.as_view(), name='tag-detail'),
+    url(r'^documents/(?P<pk>[0-9]+)/upvote/$', views.upvote_document),
+    url(r'^documents/(?P<pk>[0-9]+)/downvote/$', views.downvote_document),
     url(r'^auth/', include('djoser.urls')),
     url(r'^api-token-auth/', obtain_auth_token),
 ]

@@ -51,6 +51,9 @@ class DocumentVote(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     is_upvote = models.BooleanField()
 
+    class Meta:
+        unique_together = ('document', 'owner')
+
     def __str__(self):
         if self.is_upvote:
             value = '+1'
