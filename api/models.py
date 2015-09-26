@@ -42,12 +42,16 @@ class Document(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def votes(self):
+        return DocumentVote.objects.filter(document=self, is_upvote=True).count()
+
     def __str__(self):
         return self.title
 
 
 class DocumentVote(models.Model):
-    document = models.ForeignKey(Document, related_name='votes')
+    document = models.ForeignKey(Document)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     is_upvote = models.BooleanField()
 

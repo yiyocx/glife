@@ -29,7 +29,7 @@ class DocumentSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Document
-        fields = ('url', 'file', 'title', 'description', 'owner', 'tags', 'created_at', 'updated_at')
+        fields = ('url', 'file', 'title', 'description', 'owner', 'tags', 'votes', 'created_at', 'updated_at')
 
 
 class TokenSerializer(serializers.ModelSerializer):
