@@ -1,0 +1,19 @@
+{
+  "name": "glife",
+  "version": "1.0.0",
+  "description": "This guide assume that you have already installed postgresql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yiyocx/glife.git"
+  },
+  "author": "Yiyo Castillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yiyocx/glife/issues"
+  },
+  "homepage": "https://github.com/yiyocx/glife#readme"
+}
