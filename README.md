@@ -1,3 +1,10 @@
+# Features
+
+* Backend with Django REST Framework
+* Web client with React.js, Reflux, Materialize css
+* Custom user model and Auth system
+* Protected endpoints with Authentication and Authorization
+
 # Installation
 
 This guide assume that you have already installed postgresql
