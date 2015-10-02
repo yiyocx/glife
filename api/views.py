@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic.base import TemplateView
 from rest_framework import permissions, viewsets, generics, status
 from rest_framework import filters
 from rest_framework.decorators import api_view, permission_classes
@@ -13,6 +14,10 @@ from api.serializers import UserSerializer, TagSerializer, DocumentSerializer
 from models import Document, Tag
 
 User = get_user_model()
+
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
 
 class TagListView(generics.ListCreateAPIView):

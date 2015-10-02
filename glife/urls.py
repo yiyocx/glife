@@ -17,14 +17,17 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
+
 from api import views
+from api.views import IndexView
 
 router = DefaultRouter()
 router.register(r'documents', views.DocumentViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
-    url(r'^', include('api.urls')),
+    url(r'^$', IndexView.as_view(), name='home'),
+    url(r'^api/', include(router.urls)),
+    url(r'^api/', include('api.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

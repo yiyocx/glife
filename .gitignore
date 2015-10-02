@@ -29,3 +29,5 @@ Thumbs.db
 local_settings.py
 .idea
 /uploads
+/node_modules
+/static/dist/*

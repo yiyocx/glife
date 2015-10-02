@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/yiyocx/glife/issues"
   },
-  "homepage": "https://github.com/yiyocx/glife#readme"
+  "homepage": "https://github.com/yiyocx/glife#readme",
+  "devDependencies": {
+    "babelify": "^6.3.0"
+  },
+  "dependencies": {
+    "react": "^0.13.3",
+    "reflux": "^0.2.12"
+  }
 }
