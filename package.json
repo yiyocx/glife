@@ -4,9 +4,9 @@
   "description": "This guide assume that you have already installed postgresql",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify static/App.js -t babelify -o static/dist/bundle.js -v",
-    "build": "browserify static/App.js -t babelify | uglifyjs -mc warnings=false > static/dist/bundle.js"
+    "watch": "watchify static/App.js -t babelify -o static/bundle.js -v",
+    "build": "browserify static/App.js -t babelify | uglifyjs -mc warnings=false > static/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "react": "^0.13.3",
+    "react-router": "^0.13.3",
     "reflux": "^0.2.12"
   }
 }

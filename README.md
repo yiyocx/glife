@@ -13,6 +13,12 @@ This guide assume that you have already installed postgresql
 
     sudo apt-get update
     sudo apt-get install python-dev libpq-dev
+    
+### Frontend dependencies
+    
+node 0.12, npm, browserify, watchify, uglify
+
+    npm install -g browserify watchify uglify
 
 ### Install and create virtualenv
 

@@ -1,22 +1,26 @@
 var React = require('react');
+// Routing
+var Router = require('react-router');
+var Route = Router.Route;
+var RouteHandler = Router.RouteHandler;
+var DefaultRoute = Router.DefaultRoute;
+// View Components
+var HelloWorld = require('./components/HelloWorld');
 
-React.render(
-  <div>
-	<div className="row">
-	    <div className="col s12 m6">
-	      <div className="card blue-grey darken-1">
-	        <div className="card-content white-text">
-	          <span className="card-title">Hello, React World!</span>
-	          <p>I am a very simple card. I am very good at containing small bits of information.
-	          I am convenient because I require little markup to use effectively.</p>
-	        </div>
-	        <div className="card-action">
-	          <a href="#">This is a link</a>
-	          <a href="#">This is a link</a>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-  </div>,
-  	document.getElementById('content')  
+var AppManager = React.createClass({
+  render: function() {
+    return (
+      <RouteHandler/>
+    );
+  }
+});
+
+var routes = (
+  <Route handler={ AppManager } >
+    <DefaultRoute name="home" handler={ HelloWorld } />
+  </Route>
 );
+
+Router.run(routes, function(Handler) {
+  React.render(<Handler/>, document.body);
+});
