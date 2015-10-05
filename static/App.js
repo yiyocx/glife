@@ -6,6 +6,7 @@ var RouteHandler = Router.RouteHandler;
 var DefaultRoute = Router.DefaultRoute;
 // View Components
 var HelloWorld = require('./components/HelloWorld');
+var Header = require('./components/header');
 
 var AppManager = React.createClass({
   render: function() {
@@ -17,7 +18,7 @@ var AppManager = React.createClass({
 
 var routes = (
   <Route handler={ AppManager } >
-    <DefaultRoute name="home" handler={ HelloWorld } />
+    <DefaultRoute name="home" handler={ Header } />
   </Route>
 );
 
