@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^tags/(?P<pk>[0-9]+)/$', views.TagDetailView.as_view(), name='tag-detail'),
     url(r'^documents/(?P<pk>[0-9]+)/upvote/$', views.upvote_document),
     url(r'^documents/(?P<pk>[0-9]+)/downvote/$', views.downvote_document),
-    url(r'^auth/', include('djoser.urls')),
+    url(r'^auth/', include('djoser.urls.authtoken')),
     url(r'^api-token-auth/', obtain_auth_token),
 ]
