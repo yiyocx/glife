@@ -63,4 +63,4 @@ Finally, if everything it's fine, run the server:
 # TODO
 
 * Wait for the next version of djoser (currently is 0.3.1) and upgrade for fix bugs
-* After upgrade djoser verify the correct operation of the endpoints /login/, /activate/, /{{ User.USERNAME_FIELD }}/, /password/, /password/reset/ y /password/reset/confirm/
+* After upgrade djoser verify the correct operation of the endpoints /login/
