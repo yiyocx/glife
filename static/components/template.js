@@ -1,10 +1,14 @@
 import React from 'react';
-import Header from './header'
+import NavBar from './navbar'
+import Signup from './signup'
 
 let Template = React.createClass({
   render: function () {
     return (
-      <Header/>        
+      <div>
+        <NavBar/>
+        <Signup/>
+      </div>
     );
   }
 });

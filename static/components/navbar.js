@@ -1,13 +1,10 @@
 import React from 'react';
 import Reflux from 'reflux';
 import Link from 'react-router';
-import authStore from 'stores/auth';
+import authStore from '../stores/auth';
 
 let NavBar = React.createClass({
-  mixins: [
-    State,
-    Reflux.connect( authStore, 'user' )
-  ],
+  mixins: [Reflux.connect( authStore, 'user' )],
 
   render: function () {
     return (
