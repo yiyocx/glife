@@ -4,8 +4,8 @@
   "description": "This guide assume that you have already installed postgresql",
   "main": "index.js",
   "scripts": {
-    "watch": "watchify static/App.js -t babelify -o static/bundle.js -v",
-    "build": "browserify static/App.js -t babelify | uglifyjs -mc warnings=false > static/bundle.js",
+    "watch": "watchify static/app.js -t babelify -o static/bundle.js -v",
+    "build": "browserify static/app.js -t babelify | uglifyjs -mc warnings=false > static/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "react": "^0.13.3",
-    "react-router": "^0.13.3",
+    "react-router": "^1.0.0-rc1",
     "reflux": "^0.2.12"
   }
 }

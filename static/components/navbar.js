@@ -1,6 +1,14 @@
-var React = require('react');
+import React from 'react';
+import Reflux from 'reflux';
+import Link from 'react-router';
+import authStore from 'stores/auth';
 
-var Header = React.createClass({
+let NavBar = React.createClass({
+  mixins: [
+    State,
+    Reflux.connect( authStore, 'user' )
+  ],
+
   render: function () {
     return (
       <nav>
@@ -17,4 +25,4 @@ var Header = React.createClass({
   }
 });
 
-module.exports = Header;
+export default NavBar;
