@@ -3,8 +3,9 @@ import React from 'react';
 export default React.createClass({
   render: function () {
     return (
+      // <div className="container">
       <div className="row">
-        <form className="col s6">
+        <form className="col s4 offset-s4">
           <div className="row">
             <div className="input-field col s6">
               <input id="first_name" type="text" className="validate"/>
@@ -41,11 +42,12 @@ export default React.createClass({
               <label htmlFor="re_password">Repita la Contraseña</label>
             </div>
           </div>
-          <div className="input-field col s12">
-            <button className="btn waves-effect waves-light" type="submit" name="action">Register</button>
+          <div className="input-field col s8">
+            <button className="btn waves-effect waves-light col s10" type="submit" name="action">Register</button>
           </div>
         </form>
       </div>
+      //</div>
     );
   }
 });
