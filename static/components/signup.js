@@ -23,12 +23,12 @@ export default React.createClass({
           </div>
           <div className="row">
             <div className="input-field col s6">
-              <input id="last_name" type="text" className="validate"/>
-              <label htmlFor="last_name">Fecha de Nacimiento</label>
+              <input id="phone_number" type="text" className="validate"/>
+              <label htmlFor="phone_number">Número Telefónico</label>
             </div>
             <div className="input-field col s6">
-              <input id="last_name" type="text" className="validate"/>
-              <label htmlFor="last_name">Número Telefónico</label>
+              <input id="birthday" type="date" className="datepicker"/>
+              <label htmlFor="birthday" className="active">Fecha de Nacimiento</label>
             </div>
           </div>
           <div className="row">
@@ -37,12 +37,12 @@ export default React.createClass({
               <label htmlFor="password">Contraseña</label>
             </div>
             <div className="input-field col s6">
-              <input id="last_name" type="password" className="validate"/>
+              <input id="re_password" type="password" className="validate"/>
               <label htmlFor="re_password">Repita la Contraseña</label>
             </div>
           </div>
           <div className="input-field col s12">
-            <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+            <button className="btn waves-effect waves-light" type="submit" name="action">Register</button>
           </div>
         </form>
       </div>
