@@ -12,9 +12,9 @@ let NavBar = React.createClass({
         <div className="nav-wrapper cyan z-depth-1">
           <a href="/" className="brand-logo">Glife</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li className="active"><a href="#">Menu 1</a></li>
-            <li><a href="#">Menu 2</a></li>
-            <li><a href="#">Menu 3</a></li>
+            <li className="active"><a href="#">Inicio</a></li>
+            <li><a href="#">Registrarse</a></li>
+            <li><a href="#">Iniciar Sesión</a></li>
           </ul>
         </div>
       </nav>

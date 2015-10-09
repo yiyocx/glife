@@ -2,11 +2,15 @@ import React from 'react';
 
 export default React.createClass({
   render: function () {
-    return (
-      // <div className="container">
+    return (  
       <div className="row">
-        <form className="col s4 offset-s4">
+        <br/>
+        <form className="col s4 offset-s4 card-panel">
           <div className="row">
+            <h3 className="center-align grey-text text-darken-2">Empieza a usar Glife</h3>
+            <p className="center-align grey-text text-darken-2">¡Crea tu cuenta gratis!</p>
+          </div>
+          <div className="row">          
             <div className="input-field col s6">
               <input id="first_name" type="text" className="validate"/>
               <label htmlFor="first_name">Nombre</label>
@@ -42,12 +46,9 @@ export default React.createClass({
               <label htmlFor="re_password">Repita la Contraseña</label>
             </div>
           </div>
-          <div className="input-field col s8">
-            <button className="btn waves-effect waves-light col s10" type="submit" name="action">Register</button>
-          </div>
         </form>
+        <button className="btn waves-effect waves-light green accent-4 col s4 col offset-s4" type="submit" name="action">Register</button>        
       </div>
-      //</div>
     );
   }
 });
